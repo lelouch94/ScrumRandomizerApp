@@ -7,11 +7,17 @@ namespace ScrumRandomizerApp.Scrum.Repositories
 {
     public class ScrumParticipantRepository : IScrumParticipantRepository
     {
-        private readonly AppDatabase _appDatabase;
-        public ScrumParticipantRepository(AppDatabase appDatabase)
+        private List<ScrumParticipant> DefaultScrumParticipants = new List<ScrumParticipant>()
         {
-            _appDatabase = appDatabase;
-        }
+            (new ScrumParticipant() { Name = "Ana" }),
+            (new ScrumParticipant() { Name = "Dana" }),
+            (new ScrumParticipant() { Name = "David M." }),
+            (new ScrumParticipant() { Name = "David W." }),
+            (new ScrumParticipant() { Name = "Janet" }),
+            (new ScrumParticipant() { Name = "Jens" }),
+            (new ScrumParticipant() { Name = "Mario" }),
+            (new ScrumParticipant() { Name = "Mo" })
+        };
 
         public ScrumParticipant CreateOrUpdate(ScrumParticipant scrumParticipant)
         {
@@ -43,17 +49,5 @@ namespace ScrumRandomizerApp.Scrum.Repositories
                 // TODO: implement logging
             }
         }
-
-        private List<ScrumParticipant> DefaultScrumParticipants = new List<ScrumParticipant>()
-        {
-            (new ScrumParticipant() { Name = "Ana" }),
-                (new ScrumParticipant() { Name = "Dana" }),
-                (new ScrumParticipant() { Name = "David M." }),
-                (new ScrumParticipant() { Name = "David W." }),
-                (new ScrumParticipant() { Name = "Janet" }),
-                (new ScrumParticipant() { Name = "Jens" }),
-                (new ScrumParticipant() { Name = "Mario" }),
-                (new ScrumParticipant() { Name = "Mo" })
-        };
     }
 }

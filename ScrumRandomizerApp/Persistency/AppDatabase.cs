@@ -3,7 +3,6 @@ using ScrumRandomizerApp.Configuration.Models;
 using ScrumRandomizerApp.Persistancy;
 using ScrumRandomizerApp.Scrum;
 using SQLite;
-using System.Threading.Tasks;
 
 namespace ScrumRandomizerApp.Persistency
 {
