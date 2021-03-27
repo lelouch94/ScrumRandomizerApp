@@ -1,16 +1,21 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.IO;
 
 namespace ScrumRandomizerApp.Persistancy
 {
     public static class Globals
     {
-        public const string DatabaseFilename = "ScrumRandomizer.db3";
+        private const string DatabaseFilename = "ScrumRandomizer.db3";
 
-        public const SQLite.SQLiteOpenFlags Flags =
-        SQLite.SQLiteOpenFlags.ReadWrite |
-        SQLite.SQLiteOpenFlags.Create |
-        SQLite.SQLiteOpenFlags.SharedCache;
+        public const SQLiteOpenFlags CustomOpenFlags =
+        SQLiteOpenFlags.ReadWrite |
+        SQLiteOpenFlags.Create |
+        SQLiteOpenFlags.SharedCache;
+
+        public const CreateFlags CustomCreateFlags =
+            CreateFlags.AllImplicit |
+            CreateFlags.AutoIncPK;
 
         public static string DatabasePath
         {
