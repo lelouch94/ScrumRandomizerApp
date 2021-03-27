@@ -1,4 +1,6 @@
-﻿using Microsoft.MobileBlazorBindings;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.MobileBlazorBindings;
+using ScrumRandomizerApp.Components;
 using Xamarin.Forms;
 
 namespace ScrumRandomizerApp
@@ -10,10 +12,9 @@ namespace ScrumRandomizerApp
             var host = MobileBlazorBindingsHost.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-
+                    services.AddTransient<AppSettingsService>();
                 })
                 .Build();
-            // var settings = AppState.GetAppSettings().Result;
             MainPage = new ContentPage();
             host.AddComponent<MainComponent>(parent: MainPage);
         }
