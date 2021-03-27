@@ -10,7 +10,7 @@
     {
         <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
             <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
-                <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" HorizontalOptions="LayoutOptions.Center" IsChecked="@true" />
+                <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" HorizontalOptions="LayoutOptions.Center" IsChecked="@item.IsParticipating" IsCheckedChanged="@UpdateItem(item)" />
                 <Microsoft.MobileBlazorBindings.Elements.Label Text="@item.Name" TextColor="Color.Black" HorizontalTextAlignment="TextAlignment.Center" />
             </Microsoft.MobileBlazorBindings.Elements.StackLayout>
         </Microsoft.MobileBlazorBindings.Elements.GridCell>
@@ -23,7 +23,7 @@
     }
 
 </Microsoft.MobileBlazorBindings.Elements.Grid>
-<Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum">
+<Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum" OnClick="@OpenScrumRandomizerComponent">
 
 </Microsoft.MobileBlazorBindings.Elements.Button>
 @code {
@@ -32,6 +32,18 @@
     {
         PossibleScrumParticipants = scrumParticipantRepository.GetScrumParticipants();
     }
+
+    private async Task OpenScrumRandomizerComponent()
+    {
+        await Task.Delay(1);
+    }
+
+    private EventCallback UpdateItem(ScrumParticipant item)
+    {
+        PossibleScrumParticipants.Where(p => p.Id == item.Id).FirstOrDefault().IsParticipating = !item.IsParticipating;
+        return EventCallback.Empty;
+    }
+
 
     int row = 0;
     int column = 0;

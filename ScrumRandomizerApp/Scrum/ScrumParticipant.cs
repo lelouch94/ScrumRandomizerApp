@@ -10,5 +10,7 @@ namespace ScrumRandomizerApp.Scrum
         public string Name { get; set; }
         [NotMapped]
         public bool IsDone { get; set; }
+        [NotMapped]
+        public bool IsParticipating { get; set; } = true;
     }
 }
