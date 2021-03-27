@@ -13,3 +13,7 @@ Also make sure that you have at least Android SDK 29 installed.
 
 # Contribute
 This is a private project, so there is no contribution at this point.
+
+# About
+This is a work in progress and the newest version of this project can be found at:
+https://dev.azure.com/ezmerli/ScrumRandomizer
