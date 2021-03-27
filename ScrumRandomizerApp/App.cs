@@ -12,7 +12,7 @@ namespace ScrumRandomizerApp
             var host = MobileBlazorBindingsHost.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddTransient<AppSettingsService>();
+
                 })
                 .Build();
             MainPage = new ContentPage();
