@@ -1,17 +1,24 @@
-﻿using ScrumRandomizerApp.Configuration.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ScrumRandomizerApp.Configuration.Models;
 using ScrumRandomizerApp.Persistancy;
 using ScrumRandomizerApp.Scrum;
 using SQLite;
+using System.Threading.Tasks;
 
 namespace ScrumRandomizerApp.Persistency
 {
     public class AppDatabase
     {
-        public AppDatabase()
+        public static SQLiteConnection Database;
+
+        public DbSet<ScrumParticipant> ScrumParticipants { get; set; }
+        public DbSet<AppSettingsItem> AppSettingsItems { get; set; }
+
+        static AppDatabase()
         {
-            var db = new SQLiteConnection(Globals.DatabasePath, Globals.CustomOpenFlags);
-            db.CreateTable<AppSettingsItem>(Globals.CustomCreateFlags);
-            db.CreateTable<ScrumParticipant>(Globals.CustomCreateFlags);
+            Database = new SQLiteConnection(Globals.DatabasePath, Globals.CustomOpenFlags);
+            Database.CreateTable<AppSettingsItem>(Globals.CustomCreateFlags);
+            Database.CreateTable<ScrumParticipant>(Globals.CustomCreateFlags);
         }
     }
 }

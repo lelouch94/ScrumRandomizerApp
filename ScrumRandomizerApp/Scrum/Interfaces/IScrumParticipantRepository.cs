@@ -5,8 +5,8 @@ namespace ScrumRandomizerApp.Scrum.Interfaces
 {
     public interface IScrumParticipantRepository
     {
-        Task<List<ScrumParticipant>> GetScrumParticipants();
-        Task<ScrumParticipant> CreateOrUpdate(ScrumParticipant scrumParticipant);
-        Task<bool> Delete(int id);
+        List<ScrumParticipant> GetScrumParticipants();
+        ScrumParticipant CreateOrUpdate(ScrumParticipant scrumParticipant);
+        bool Delete(int id);
     }
 }

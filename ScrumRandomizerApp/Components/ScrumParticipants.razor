@@ -1,13 +1,17 @@
-﻿
+﻿@using ScrumRandomizerApp.Scrum.Interfaces
+@using ScrumRandomizerApp.Scrum.Repositories
+@using ScrumRandomizerApp.Scrum
+
+@inject IScrumParticipantRepository scrumParticipantRepository
 
 <Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand">
 
-    @foreach (var item in PossibleScrumParticipants.OrderBy(p => p))
+    @foreach (var item in PossibleScrumParticipants.OrderBy(p => p.Name))
     {
         <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
             <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
                 <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" HorizontalOptions="LayoutOptions.Center" IsChecked="@true" />
-                <Microsoft.MobileBlazorBindings.Elements.Label Text="@item" TextColor="Color.Black" HorizontalTextAlignment="TextAlignment.Center" />
+                <Microsoft.MobileBlazorBindings.Elements.Label Text="@item.Name" TextColor="Color.Black" HorizontalTextAlignment="TextAlignment.Center" />
             </Microsoft.MobileBlazorBindings.Elements.StackLayout>
         </Microsoft.MobileBlazorBindings.Elements.GridCell>
         column++;
@@ -18,25 +22,16 @@
         }
     }
 
-
-
 </Microsoft.MobileBlazorBindings.Elements.Grid>
-<Microsoft.MobileBlazorBindings.Elements.Button>
+<Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum">
 
 </Microsoft.MobileBlazorBindings.Elements.Button>
 @code {
-    List<string> PossibleScrumParticipants = new List<string>()
+    List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
+    protected override async Task OnInitializedAsync()
     {
-    "Mario",
-    "Dana",
-    "Jens",
-    "David M.",
-    "David W.",
-    "Janet",
-    "Ana",
-    "Markus",
-    "Mo"
-    };
+        PossibleScrumParticipants = scrumParticipantRepository.GetScrumParticipants();
+    }
 
     int row = 0;
     int column = 0;
