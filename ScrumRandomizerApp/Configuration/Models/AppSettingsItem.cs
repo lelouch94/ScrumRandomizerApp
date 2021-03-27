@@ -1,4 +1,4 @@
-﻿namespace ScrumRandomizerApp
+﻿namespace ScrumRandomizerApp.Configuration.Models
 {
     public class AppSettingsItem
     {
