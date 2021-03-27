@@ -1,9 +1,5 @@
-﻿using System;
-using Microsoft.MobileBlazorBindings;
-using Microsoft.Extensions.Hosting;
-using Xamarin.Essentials;
+﻿using Microsoft.MobileBlazorBindings;
 using Xamarin.Forms;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ScrumRandomizerApp
 {
@@ -17,9 +13,9 @@ namespace ScrumRandomizerApp
 
                 })
                 .Build();
-           // var settings = AppState.GetAppSettings().Result;
+            // var settings = AppState.GetAppSettings().Result;
             MainPage = new ContentPage();
-            host.AddComponent<HelloWorld>(parent: MainPage);
+            host.AddComponent<MainComponent>(parent: MainPage);
         }
 
         protected override void OnStart()
