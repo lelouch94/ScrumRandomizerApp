@@ -1,0 +1,43 @@
+﻿
+<Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand" >
+
+    @foreach (var item in PossibleScrumParticipants)
+    {
+        <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
+            <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
+                <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" />
+                <Microsoft.MobileBlazorBindings.Elements.Label Text="@item" TextColor="Color.Black" />
+            </Microsoft.MobileBlazorBindings.Elements.StackLayout>
+        </Microsoft.MobileBlazorBindings.Elements.GridCell>
+        column++;
+        if (column % 3 == 0)
+        {
+            row++;
+            column = 0;
+        }
+    }
+
+
+
+</Microsoft.MobileBlazorBindings.Elements.Grid>
+<Microsoft.MobileBlazorBindings.Elements.Button>
+
+</Microsoft.MobileBlazorBindings.Elements.Button>
+@code {
+    List<string> PossibleScrumParticipants = new List<string>()
+    {
+    "Mario",
+    "Dana",
+    "David",
+    "Jens",
+    "David M.",
+    "David W.",
+    "Janet",
+    "Ana",
+    "Markus"
+    };
+
+
+    int row = 0;
+    int column = 0;
+}
