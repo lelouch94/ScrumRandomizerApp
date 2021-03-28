@@ -29,7 +29,7 @@ namespace ScrumRandomizerApp.Scrum.Repositories
             throw new NotImplementedException();
         }
 
-        public List<ScrumParticipant> GetScrumParticipants()
+        public List<ScrumParticipant> GetPossibleScrumParticipants()
         {
             if (AppDatabase.Database?.Table<ScrumParticipant>()?.Count() <= 0)
                 SeedDatabase();

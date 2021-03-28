@@ -1,0 +1,22 @@
+﻿@inject ScrumRandomizerService scrumRandomizerService
+
+@foreach (var item in scrumRandomizerService.RandomizeScrumParticipants(ScrumParticipants))
+{
+    <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
+        <RandomizedParticipantComponent CurrentScrumParticipant="@item" />
+    </Microsoft.MobileBlazorBindings.Elements.GridCell>
+    column++;
+    if (column % 3 == 0)
+    {
+        row++;
+        column = 0;
+    }
+}
+
+@code {
+    [Parameter]
+    public List<ScrumParticipant> ScrumParticipants { get; set; }
+
+    private int row = 0;
+    private int column = 0;
+}

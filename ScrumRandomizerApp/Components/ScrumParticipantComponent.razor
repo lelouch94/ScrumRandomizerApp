@@ -1,0 +1,20 @@
+﻿    @foreach (var item in ScrumParticipants.OrderBy(p => p.Name))
+    {
+        <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
+            <ParticipantComponent CurrentScrumParticipant="@item" />
+        </Microsoft.MobileBlazorBindings.Elements.GridCell>
+        column++;
+        if (column % 3 == 0)
+        {
+            row++;
+            column = 0;
+        }
+    }
+
+@code {
+    [Parameter]
+    public List<ScrumParticipant> ScrumParticipants { get; set; }
+
+    private int row = 0;
+    private int column = 0;
+}

@@ -1,0 +1,27 @@
+﻿<Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
+
+    <Microsoft.MobileBlazorBindings.Elements.CheckBox 
+        Color="Color.Purple" 
+        HorizontalOptions="LayoutOptions.Center"
+        IsChecked="@CurrentScrumParticipant.IsDone"
+        Scale="2"
+        IsCheckedChanged="UncheckItem" />
+
+    <Microsoft.MobileBlazorBindings.Elements.Label 
+        Text="@CurrentScrumParticipant.Name" 
+        TextColor="Color.Black" 
+        HorizontalTextAlignment="TextAlignment.Center" 
+        Scale="1.5" />
+
+</Microsoft.MobileBlazorBindings.Elements.StackLayout>
+
+
+@code {
+    [Parameter]
+    public ScrumParticipant CurrentScrumParticipant { get; set; }
+
+    private void UncheckItem()
+    {
+        CurrentScrumParticipant.IsDone = !CurrentScrumParticipant.IsDone;
+    }
+}

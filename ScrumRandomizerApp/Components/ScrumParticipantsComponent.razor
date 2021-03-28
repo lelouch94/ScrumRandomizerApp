@@ -1,0 +1,43 @@
+﻿@inject IScrumParticipantRepository scrumParticipantRepository
+
+<Microsoft.MobileBlazorBindings.Elements.ScrollView>
+    <Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand" @ref="grid">
+
+        @if (showActualScrumParticipants)
+        {
+            <RandomizedScrumParticipantsComponent ScrumParticipants="@ActualScrumParticipants" />
+        }
+        else
+        {
+            <ScrumParticipantComponent ScrumParticipants="@PossibleScrumParticipants" />
+        }
+    </Microsoft.MobileBlazorBindings.Elements.Grid>
+
+
+</Microsoft.MobileBlazorBindings.Elements.ScrollView>
+
+@if (false == showActualScrumParticipants)
+{
+    <Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum" VerticalOptions="LayoutOptions.EndAndExpand" OnClick="@OpenScrumRandomizerComponent" />
+}
+
+@code {
+    private Microsoft.MobileBlazorBindings.Elements.Grid grid;
+    private List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
+    private List<ScrumParticipant> ActualScrumParticipants = new List<ScrumParticipant>();
+    private int row = 0;
+    private int column = 0;
+    private bool showActualScrumParticipants = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        PossibleScrumParticipants = scrumParticipantRepository.GetPossibleScrumParticipants();
+    }
+
+    private void OpenScrumRandomizerComponent()
+    {
+        grid.NativeControl.Children.Clear();
+        ActualScrumParticipants = PossibleScrumParticipants.Where(p => p.IsParticipating == true).ToList();
+        showActualScrumParticipants = true;
+    }
+}
