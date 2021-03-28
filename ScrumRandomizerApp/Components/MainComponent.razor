@@ -1,7 +1,42 @@
 <Microsoft.MobileBlazorBindings.Elements.ContentView>
+
     <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin="new Thickness(20)">
+        <Microsoft.MobileBlazorBindings.Elements.Button Text="MainMenu" OnClick="@CleanMainStackLayout" @ref="btn" />
 
-        <ScrumParticipantsComponent/>
 
+        <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin="new Thickness(20)" @ref="mainStackLayout">
+
+            @if (ShowScrumParticipantsComponent)
+            {
+                <ScrumParticipantsComponent />
+            }
+            else
+            {
+                <Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum Randomizer" OnClick="@OpenScrumRandomizerComponent" />
+            }
+        </Microsoft.MobileBlazorBindings.Elements.StackLayout>
     </Microsoft.MobileBlazorBindings.Elements.StackLayout>
 </Microsoft.MobileBlazorBindings.Elements.ContentView>
+
+@code {
+    private Microsoft.MobileBlazorBindings.Elements.StackLayout mainStackLayout { get; set; }
+    private Microsoft.MobileBlazorBindings.Elements.Button btn { get; set; }
+    private bool ShowScrumParticipantsComponent { get; set; } = false;
+
+
+    private void OpenScrumRandomizerComponent()
+    {
+        mainStackLayout.NativeControl.Children.Clear();
+        if (false == ShowScrumParticipantsComponent)
+            ShowScrumParticipantsComponent = true;
+    }
+
+    private void CleanMainStackLayout()
+    {
+        if (ShowScrumParticipantsComponent)
+        {
+            mainStackLayout.NativeControl.Children.Clear();
+            ShowScrumParticipantsComponent = false;
+        }
+    }
+}
