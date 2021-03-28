@@ -5,7 +5,7 @@
     @foreach (var item in PossibleScrumParticipants.OrderBy(p => p.Name))
     {
         <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
-            <ParticipantComponent scrumParticipant="@item" />
+            <ParticipantComponent CurrentScrumParticipant="@item" />
         </Microsoft.MobileBlazorBindings.Elements.GridCell>
         column++;
         if (column % 3 == 0)
@@ -16,9 +16,9 @@
     }
 
 </Microsoft.MobileBlazorBindings.Elements.Grid>
-<Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum" OnClick="@OpenScrumRandomizerComponent">
 
-</Microsoft.MobileBlazorBindings.Elements.Button>
+<Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum" OnClick="@OpenScrumRandomizerComponent" />
+
 @code {
     private List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
     private int row = 0;
@@ -30,8 +30,9 @@
         PossibleScrumParticipants = scrumParticipantRepository.GetScrumParticipants();
     }
 
-    private async Task OpenScrumRandomizerComponent()
+    private void OpenScrumRandomizerComponent()
     {
-        await Task.Delay(1);
+        var actualScrumParticipants = PossibleScrumParticipants.Where(p => p.IsParticipating == true).ToList();
+        
     }
 }
