@@ -1,15 +1,29 @@
 ﻿@inject IScrumParticipantRepository scrumParticipantRepository
 
 <Microsoft.MobileBlazorBindings.Elements.ScrollView>
-    <Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand" ColumnDefinitions="3" @ref="grid">
+    <Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand" @ref="grid">
 
         @if (showRandomizedActuallScrumParticipants)
         {
-            <RandomizedScrumParticipantsComponent ScrumParticipants="@ActualScrumParticipants" />
+            if (ActualScrumParticipants != null && ActualScrumParticipants.Count > 0)
+            {
+                <RandomizedScrumParticipantsComponent ScrumParticipants="@ActualScrumParticipants" />
+            }
+            else
+            {
+                <ErrorComponent ErrorMessage="Nothing to see here!" />
+            }
         }
         else
         {
-            <ScrumParticipantComponent ScrumParticipants="@PossibleScrumParticipants" />
+            if (PossibleScrumParticipants != null && PossibleScrumParticipants.Count > 0)
+            {
+                <ScrumParticipantComponent ScrumParticipants="@PossibleScrumParticipants" />
+            }
+            else
+            {
+                <ErrorComponent ErrorMessage="Nothing to see here!" />
+            }
         }
     </Microsoft.MobileBlazorBindings.Elements.Grid>
 

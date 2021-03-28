@@ -1,29 +1,52 @@
 ﻿@inject ScrumRandomizerService scrumRandomizerService
 
-<Microsoft.MobileBlazorBindings.Elements.GridCell ColumnSpan="3">
+<Microsoft.MobileBlazorBindings.Elements.GridCell>
     <RandomizedParticipantComponent CurrentScrumParticipant="@CurrentScrumParticipant" />
 </Microsoft.MobileBlazorBindings.Elements.GridCell>
-<Microsoft.MobileBlazorBindings.Elements.Button OnClick="NextParticipant" />
 
+<Microsoft.MobileBlazorBindings.Elements.GridCell Row="2">
+    <Microsoft.MobileBlazorBindings.Elements.Button OnClick="NextParticipant" Text="Next" IsEnabled="@EnableButton()" />
+
+</Microsoft.MobileBlazorBindings.Elements.GridCell>
 
 @code {
     [Parameter]
     public List<ScrumParticipant> ScrumParticipants { get; set; }
 
     private ScrumParticipant CurrentScrumParticipant { get; set; }
+    private Microsoft.MobileBlazorBindings.Elements.Button nextButton;
+
 
     int index = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentScrumParticipant = ScrumParticipants.ElementAt(index);
-        index++;
+        if (index < ScrumParticipants.Count)
+        {
+            ScrumParticipants = scrumRandomizerService.RandomizeScrumParticipants(ScrumParticipants);
+            CurrentScrumParticipant = ScrumParticipants.ElementAt(index);
+            index++;
+        }
+        if (index >= ScrumParticipants.Count)
+        {
+        }
     }
 
     private void NextParticipant()
     {
-        CurrentScrumParticipant = ScrumParticipants.ElementAt(index);
-        index++;
+        if (index < ScrumParticipants.Count)
+        {
+            CurrentScrumParticipant = ScrumParticipants.ElementAt(index);
+            index++;
+        }
+        else
+        {
+        }
     }
 
+
+    private bool EnableButton()
+    {
+        return ScrumParticipants.Count > index;
+    }
 }

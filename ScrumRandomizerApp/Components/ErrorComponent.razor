@@ -1,0 +1,11 @@
+﻿
+@if (!String.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <Microsoft.MobileBlazorBindings.Elements.Label Text="@ErrorMessage" FontSize="40"/>
+}
+
+@code {
+
+    [Parameter]
+    public string ErrorMessage { get; set; }
+}
