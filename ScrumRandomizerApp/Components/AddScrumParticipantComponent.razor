@@ -1,0 +1,26 @@
+﻿@inject IScrumParticipantRepository scrumParticipantRepository
+
+
+<Microsoft.AspNetCore.Components.Forms.InputText @bind-Value=@NewScrumParticipant.Name/>
+<Microsoft.MobileBlazorBindings.Elements.Label Text="Name"/>
+<Microsoft.MobileBlazorBindings.Elements.Button Text="Add to Database"/>
+
+
+
+
+
+
+
+
+@code {
+    private ScrumParticipant NewScrumParticipant = new ScrumParticipant();
+
+    private void SaveNewScrumParticipantToDatabase()
+    {
+        if (false == string.IsNullOrWhiteSpace(NewScrumParticipant?.Name))
+        {
+            scrumParticipantRepository.CreateOrUpdate(NewScrumParticipant);
+            NewScrumParticipant = new ScrumParticipant();
+        }
+    }
+}

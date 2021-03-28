@@ -8,7 +8,7 @@ namespace ScrumRandomizerApp.Scrum
         public int Id { get; set; }
 
         [Unique]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [NotMapped]
         public bool IsDone { get; set; }
