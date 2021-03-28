@@ -2,6 +2,7 @@
 using Microsoft.MobileBlazorBindings;
 using ScrumRandomizerApp.Components;
 using ScrumRandomizerApp.Persistency;
+using ScrumRandomizerApp.Randomization;
 using ScrumRandomizerApp.Scrum.Interfaces;
 using ScrumRandomizerApp.Scrum.Repositories;
 using Xamarin.Forms;
@@ -17,6 +18,7 @@ namespace ScrumRandomizerApp
                 {
                     services.AddSingleton<AppDatabase>();
                     services.AddTransient<IScrumParticipantRepository, ScrumParticipantRepository>();
+                    services.AddTransient<ScrumRandomizerService>();
                 })
                 .Build();
             MainPage = new ContentPage();

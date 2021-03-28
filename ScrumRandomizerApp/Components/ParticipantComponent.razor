@@ -3,25 +3,25 @@
     <Microsoft.MobileBlazorBindings.Elements.CheckBox 
         Color="Color.Purple" 
         HorizontalOptions="LayoutOptions.Center"
-        IsChecked="@scrumParticipant.IsParticipating"
+        IsChecked="@CurrentScrumParticipant.IsParticipating"
         Scale="2"
         IsCheckedChanged="UncheckItem" />
 
     <Microsoft.MobileBlazorBindings.Elements.Label 
-    Text="@scrumParticipant.Name" 
-    TextColor="Color.Black" 
-    HorizontalTextAlignment="TextAlignment.Center" 
-    Scale="1.5" />
+        Text="@CurrentScrumParticipant.Name" 
+        TextColor="Color.Black" 
+        HorizontalTextAlignment="TextAlignment.Center" 
+        Scale="1.5" />
 
 </Microsoft.MobileBlazorBindings.Elements.StackLayout>
 
 
 @code {
     [Parameter]
-    public ScrumParticipant scrumParticipant { get; set; }
+    public ScrumParticipant CurrentScrumParticipant { get; set; }
 
     private void UncheckItem()
     {
-        scrumParticipant.IsParticipating = !scrumParticipant.IsParticipating;
+        CurrentScrumParticipant.IsParticipating = !CurrentScrumParticipant.IsParticipating;
     }
 }

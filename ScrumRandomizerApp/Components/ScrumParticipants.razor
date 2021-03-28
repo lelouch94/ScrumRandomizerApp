@@ -20,9 +20,10 @@
 
 </Microsoft.MobileBlazorBindings.Elements.Button>
 @code {
-    List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
-    int row = 0;
-    int column = 0;
+    private List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
+    private int row = 0;
+    private int column = 0;
+
 
     protected override async Task OnInitializedAsync()
     {
