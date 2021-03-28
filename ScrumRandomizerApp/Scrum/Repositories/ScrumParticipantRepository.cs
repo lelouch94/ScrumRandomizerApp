@@ -21,12 +21,35 @@ namespace ScrumRandomizerApp.Scrum.Repositories
 
         public ScrumParticipant CreateOrUpdate(ScrumParticipant scrumParticipant)
         {
-            throw new NotImplementedException();
+            if (scrumParticipant == null)
+                throw new ArgumentNullException(nameof(scrumParticipant));
+
+            try
+            {
+                AppDatabase.Database.Insert(scrumParticipant);
+            }
+            catch (Exception ex)
+            {
+                // TODO: implement logging
+            }
+            return scrumParticipant;
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id));
+
+            var result = false;
+            try
+            {
+                result = AppDatabase.Database.Delete(id) >= 0;
+            }
+            catch (Exception ex)
+            {
+                // TODO: implement logging
+            }
+            return result;
         }
 
         public List<ScrumParticipant> GetPossibleScrumParticipants()

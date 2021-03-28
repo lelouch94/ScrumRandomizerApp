@@ -10,10 +10,17 @@
             {
                 <ScrumParticipantsComponent />
             }
+            else if(ShowAddScrumParticipantComponent)
+            {
+                @*<AddScrumParticipantComponent />*@
+            }
             else
             {
                 <Microsoft.MobileBlazorBindings.Elements.Button Text="Start Scrum Randomizer" OnClick="@OpenScrumRandomizerComponent" />
+                <Microsoft.MobileBlazorBindings.Elements.Button Text="Add New Scrum Participant" OnClick="@OpenAddScrumParticipantComponent" />
             }
+
+
         </Microsoft.MobileBlazorBindings.Elements.StackLayout>
     </Microsoft.MobileBlazorBindings.Elements.StackLayout>
 </Microsoft.MobileBlazorBindings.Elements.ContentView>
@@ -22,7 +29,7 @@
     private Microsoft.MobileBlazorBindings.Elements.StackLayout mainStackLayout { get; set; }
     private Microsoft.MobileBlazorBindings.Elements.Button btn { get; set; }
     private bool ShowScrumParticipantsComponent { get; set; } = false;
-
+    private bool ShowAddScrumParticipantComponent { get; set; } = false;
 
     private void OpenScrumRandomizerComponent()
     {
@@ -33,10 +40,17 @@
 
     private void CleanMainStackLayout()
     {
-        if (ShowScrumParticipantsComponent)
+        if (ShowScrumParticipantsComponent || ShowAddScrumParticipantComponent)
         {
             mainStackLayout.NativeControl.Children.Clear();
             ShowScrumParticipantsComponent = false;
+            ShowAddScrumParticipantComponent = false;
         }
+    }
+
+    private void OpenAddScrumParticipantComponent()
+    {
+        if (false == ShowAddScrumParticipantComponent)
+            ShowAddScrumParticipantComponent = true;
     }
 }

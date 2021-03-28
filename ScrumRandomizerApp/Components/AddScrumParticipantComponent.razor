@@ -1,16 +1,11 @@
 ﻿@inject IScrumParticipantRepository scrumParticipantRepository
 
+<Microsoft.AspNetCore.Components.Forms.EditForm @Model="@NewScrumParticipant">
+    <Microsoft.AspNetCore.Components.Forms.InputText @bind-Value=@NewScrumParticipant.Name />
+    <Microsoft.MobileBlazorBindings.Elements.Label Text="Name" />
+    <Microsoft.MobileBlazorBindings.Elements.Button Text="Add to Database" />
 
-<Microsoft.AspNetCore.Components.Forms.InputText @bind-Value=@NewScrumParticipant.Name/>
-<Microsoft.MobileBlazorBindings.Elements.Label Text="Name"/>
-<Microsoft.MobileBlazorBindings.Elements.Button Text="Add to Database"/>
-
-
-
-
-
-
-
+</Microsoft.AspNetCore.Components.Forms.EditForm>
 
 @code {
     private ScrumParticipant NewScrumParticipant = new ScrumParticipant();
