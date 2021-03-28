@@ -1,8 +1,4 @@
-﻿@using ScrumRandomizerApp.Scrum.Interfaces
-@using ScrumRandomizerApp.Scrum.Repositories
-@using ScrumRandomizerApp.Scrum
-
-@inject IScrumParticipantRepository scrumParticipantRepository
+﻿@inject IScrumParticipantRepository scrumParticipantRepository
 
 <Microsoft.MobileBlazorBindings.Elements.Grid HorizontalOptions="LayoutOptions.FillAndExpand" VerticalOptions="LayoutOptions.FillAndExpand">
 
@@ -10,7 +6,7 @@
     {
         <Microsoft.MobileBlazorBindings.Elements.GridCell Row="@row" Column="@column">
             <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
-                <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" HorizontalOptions="LayoutOptions.Center" IsChecked="@item.IsParticipating" IsCheckedChanged="@UpdateItem(item)" />
+                <Microsoft.MobileBlazorBindings.Elements.CheckBox Color="Color.Purple" HorizontalOptions="LayoutOptions.Center" IsChecked="@item.IsParticipating" />
                 <Microsoft.MobileBlazorBindings.Elements.Label Text="@item.Name" TextColor="Color.Black" HorizontalTextAlignment="TextAlignment.Center" />
             </Microsoft.MobileBlazorBindings.Elements.StackLayout>
         </Microsoft.MobileBlazorBindings.Elements.GridCell>
@@ -28,6 +24,9 @@
 </Microsoft.MobileBlazorBindings.Elements.Button>
 @code {
     List<ScrumParticipant> PossibleScrumParticipants = new List<ScrumParticipant>();
+    int row = 0;
+    int column = 0;
+
     protected override async Task OnInitializedAsync()
     {
         PossibleScrumParticipants = scrumParticipantRepository.GetScrumParticipants();
@@ -37,14 +36,4 @@
     {
         await Task.Delay(1);
     }
-
-    private EventCallback UpdateItem(ScrumParticipant item)
-    {
-        PossibleScrumParticipants.Where(p => p.Id == item.Id).FirstOrDefault().IsParticipating = !item.IsParticipating;
-        return EventCallback.Empty;
-    }
-
-
-    int row = 0;
-    int column = 0;
 }

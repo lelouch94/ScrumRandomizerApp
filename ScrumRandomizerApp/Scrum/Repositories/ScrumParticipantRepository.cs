@@ -31,7 +31,7 @@ namespace ScrumRandomizerApp.Scrum.Repositories
 
         public List<ScrumParticipant> GetScrumParticipants()
         {
-            if (AppDatabase.Database?.Table<ScrumParticipant>() == null)
+            if (AppDatabase.Database?.Table<ScrumParticipant>()?.Count() <= 0)
                 SeedDatabase();
 
             return AppDatabase.Database?.Table<ScrumParticipant>()?.ToList()
