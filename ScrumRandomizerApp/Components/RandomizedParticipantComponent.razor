@@ -1,5 +1,7 @@
 ﻿@using System.Threading
 
+
+
 <Microsoft.MobileBlazorBindings.Elements.StackLayout Margin=" new Thickness(25)">
 
     @if (CurrentScrumParticipant != null)
@@ -26,9 +28,9 @@
     [Parameter]
     public double ProgressPercentComplete { get; set; }
 
-
     private Microsoft.MobileBlazorBindings.Elements.ProgressBar _progressBar;
     private Timer _timer;
+    private bool playedSound = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,5 +45,18 @@
     {
         ProgressPercentComplete += 0.01;
         await InvokeAsync(StateHasChanged);
+        // await PlayAlertSound();
+    }
+
+    private async Task PlayAlertSound()
+    {
+        if (false == playedSound)
+            await Task.Run(() =>
+            {
+                playedSound = true;
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("alert.mp3");
+                player.Play();
+            });
     }
 }

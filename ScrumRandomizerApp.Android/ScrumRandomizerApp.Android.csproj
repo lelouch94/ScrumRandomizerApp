@@ -109,6 +109,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\scrum.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\alert.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
