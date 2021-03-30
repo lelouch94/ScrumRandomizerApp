@@ -41,11 +41,12 @@
         period: new TimeSpan(hours: 0, minutes: 0, seconds: 1));
     }
 
+
     private async Task TickTimer(object state)
     {
-        ProgressPercentComplete += 0.01;
+        ProgressPercentComplete += 0.015;
         await InvokeAsync(StateHasChanged);
-        if (ProgressPercentComplete > 1)
+        if (ProgressPercentComplete > 1 && ProgressPercentComplete < 1.1)
             await AlertByTextToSpeech();
     }
 
