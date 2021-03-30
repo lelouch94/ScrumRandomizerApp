@@ -11,10 +11,10 @@
 
         <Microsoft.MobileBlazorBindings.Elements.ProgressBar @ref="_progressBar"
                                                          Progress="@_progressPercentComplete"
-                                                         HeightRequest="10"
+                                                         HeightRequest="20"
                                                          Margin="new Thickness(20)"
                                                          FlowDirection="FlowDirection.RightToLeft"
-                                                         BackgroundColor="Color.OrangeRed" />
+                                                         ProgressColor="Color.Red" />
     }
 
 </Microsoft.MobileBlazorBindings.Elements.StackLayout>
@@ -23,25 +23,22 @@
     [Parameter]
     public ScrumParticipant CurrentScrumParticipant { get; set; }
 
-    [Parameter]
-    public double ScrumTime { get; set; } = 90;
-
     private Microsoft.MobileBlazorBindings.Elements.ProgressBar _progressBar;
     private double _progressPercentComplete { get; set; }
     private Timer _timer;
-    private double _progressedSeconds = 0;
 
     protected override async Task OnInitializedAsync()
     {
         _timer = new Timer(
-        TickTimer,
+        async (e) => { await TickTimer(e); },
         state: null,
         dueTime: TimeSpan.Zero,
         period: new TimeSpan(hours: 0, minutes: 0, seconds: 1));
     }
 
-    private void TickTimer(object state)
+    private async Task TickTimer(object state)
     {
         _progressPercentComplete += 0.01;
+        await InvokeAsync(StateHasChanged);
     }
 }

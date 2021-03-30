@@ -1,6 +1,6 @@
 ﻿@inject ScrumRandomizerService scrumRandomizerService
 
-<Microsoft.MobileBlazorBindings.Elements.GridCell>
+<Microsoft.MobileBlazorBindings.Elements.GridCell @ref="_gridCell">
     <RandomizedParticipantComponent CurrentScrumParticipant="@CurrentScrumParticipant" />
 </Microsoft.MobileBlazorBindings.Elements.GridCell>
 
@@ -15,7 +15,7 @@
 
     private ScrumParticipant CurrentScrumParticipant { get; set; }
     private Microsoft.MobileBlazorBindings.Elements.Button nextButton;
-
+    private Microsoft.MobileBlazorBindings.Elements.GridCell _gridCell;
 
     int index = 0;
 
@@ -31,8 +31,10 @@
 
     private void NextParticipant()
     {
+        
         if (index < ScrumParticipants.Count)
         {
+            _gridCell = new Microsoft.MobileBlazorBindings.Elements.GridCell(); 
             CurrentScrumParticipant = ScrumParticipants.ElementAt(index);
             index++;
         }
