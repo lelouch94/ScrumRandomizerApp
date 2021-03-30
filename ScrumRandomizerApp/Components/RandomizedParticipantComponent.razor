@@ -45,7 +45,8 @@
     {
         ProgressPercentComplete += 0.01;
         await InvokeAsync(StateHasChanged);
-        // await PlayAlertSound();
+        if (ProgressPercentComplete > 1)
+            await AlertByTextToSpeech();
     }
 
     private async Task PlayAlertSound()
@@ -58,5 +59,13 @@
                 player.Load("alert.mp3");
                 player.Play();
             });
+    }
+
+    private async Task AlertByTextToSpeech()
+    {
+        await Task.Run(() =>
+        {
+            Xamarin.Essentials.TextToSpeech.SpeakAsync("The time has run out! Please stop talking!");
+        });
     }
 }
