@@ -18,7 +18,9 @@ namespace ScrumRandomizerApp.Scrum.Repositories
             (new ScrumParticipant() { Name = "Mario" }),
             (new ScrumParticipant() { Name = "Mo" }),
             (new ScrumParticipant() { Name = "Yuliya" }),
-            (new ScrumParticipant() { Name = "Markus" })
+            (new ScrumParticipant() { Name = "Markus" }),
+            (new ScrumParticipant() { Name = "Aylin" }),
+            (new ScrumParticipant() { Name = "Sina" })
         };
 
         public ScrumParticipant CreateOrUpdate(ScrumParticipant scrumParticipant)
